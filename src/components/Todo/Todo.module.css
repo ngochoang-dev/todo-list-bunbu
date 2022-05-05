@@ -1,0 +1,182 @@
+.container {
+    margin: 20px 0;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.content::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+    top: 100%;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+}
+
+.line::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: red;
+    top: 100%;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+}
+
+.active {
+    opacity: .5;
+}
+
+.active::after {
+    top: 50%;
+}
+
+.wrapper_title {
+    display: flex;
+    align-items: center;
+}
+
+.wrapper_title>p {
+    margin-left: 6px;
+    user-select: none;
+    cursor: default;
+    font-size: 1rem;
+    padding: 4px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper_title>input {
+    width: 100%;
+    border: none;
+    margin-left: 6px;
+    padding: 4px;
+    font-size: 1rem;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.content button {
+    cursor: pointer;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.icon_trash {
+    color: var(--white-color);
+}
+
+.wrapper_checkbox {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: fit-content;
+}
+
+.wrapper_checkbox>p {
+    margin-left: 6px;
+    font-size: .9rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrapper_checkbox>input {
+    display: none !important;
+}
+
+.checkbox {
+    user-select: none !important;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+.btn_check {
+    user-select: none !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: block;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+}
+
+.btn_check::after {
+    position: absolute;
+    content: " ";
+    top: 2px;
+    left: 0;
+    width: 4px;
+    height: 10px;
+    border: 3px solid #1E88E5;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg) translate(3px, -4px) scale(.7);
+    -webkit-transform: rotate(45deg) translate(3px, -4px) scale(.7);
+    -moz-transform: rotate(45deg) translate(3px, -4px) scale(.7);
+    -ms-transform: rotate(45deg) translate(3px, -4px) scale(.7);
+    -o-transform: rotate(45deg) translate(3px, -4px) scale(.7);
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+}
+
+input:checked~.btn_check::after {
+    opacity: 1;
+    visibility: visible;
+    transform: rotate(45deg) translate(2px, -5px) scale(1);
+    -webkit-transform: rotate(45deg) translate(2px, -5px) scale(1);
+    -moz-transform: rotate(45deg) translate(2px, -5px) scale(1);
+    -ms-transform: rotate(45deg) translate(2px, -5px) scale(1);
+    -o-transform: rotate(45deg) translate(2px, -5px) scale(1);
+}
