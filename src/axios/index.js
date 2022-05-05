@@ -21,7 +21,7 @@ const axiosInstance = () => {
         return response;
     }, async function (error) {
         console.log(error);
-        const { response } = error;
+        const { response, config } = error;
         const { url } = response.config
         const statusCode = response.status;
         if (url === '/' || url === '/signup') {
@@ -33,7 +33,7 @@ const axiosInstance = () => {
             if (token) {
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
                 localStorage.setItem('token', token)
-                return response
+                return instance(config)
             }
         }
         return Promise.reject(error);
@@ -47,7 +47,8 @@ const axiosInstance = () => {
     }
 
     instance.getToken = async () => {
-        return window.localStorage.getItem('token');
+        return window.localStorage.getItem('token') ?
+            window.localStorage.getItem('token') : null;
     }
 
     return instance;

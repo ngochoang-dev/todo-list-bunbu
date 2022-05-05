@@ -29,8 +29,6 @@ function TodoList() {
     const [showModalCreate, setShowModalCreate] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
 
-    const token = localStorage.getItem('token')
-
     const handleConfirmDelete = () => {
         dispatch(deleteTodo(idDelete))
     }
@@ -55,9 +53,8 @@ function TodoList() {
     }, [loading]);
 
     useEffect(() => {
-        token && dispatch(getTodoList(page));
-    }, [dispatch, token, page]);
-
+        dispatch(getTodoList(page));
+    }, [dispatch, page]);
 
     useEffect(() => {
         let number;
@@ -76,6 +73,8 @@ function TodoList() {
             setPagination(pages)
         }
     }, [count]);
+
+    console.log(page);
 
     return (
         <>

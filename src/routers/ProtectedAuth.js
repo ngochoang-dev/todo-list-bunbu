@@ -21,8 +21,6 @@ function ProtectedAuth({ children }) {
         }
     }, [isAuthenticated]);
 
-    if (!isAuthenticated) return null;
-
 
     return children
 }
