@@ -20,7 +20,6 @@ const axiosInstance = () => {
     instance.interceptors.response.use(async function (response) {
         return response;
     }, async function (error) {
-        console.log(error);
         const { response, config } = error;
         const { url } = response.config
         const statusCode = response.status;

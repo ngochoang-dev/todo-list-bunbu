@@ -36,11 +36,12 @@ function* createTodo({ payload }) {
 }
 
 function* deleteTodo({ payload }) {
+    const { idDelete, page } = payload;
     try {
         yield put({ type: types.DELETE_TODO_LOADING });
-        const res = yield call(handleDeleteTodo, payload);
+        const res = yield call(handleDeleteTodo, idDelete);
         yield put({ type: types.DELETE_TODO_SUCCESS })
-        yield put({ type: types.GET_TODO })
+        yield put({ type: types.GET_TODO, payload: page })
     } catch ({ response }) {
         console.log(response);
         yield put({
@@ -54,7 +55,9 @@ function* updateTodo({ payload }) {
         yield put({ type: types.UPDATE_TODO_LOADING });
         const res = yield call(handleUpdateTodo, payload);
         yield put({ type: types.UPDATE_TODO_SUCCESS })
-        yield put({ type: types.GET_TODO })
+        yield put({
+            type: types.GET_TODO, payload: payload.page
+        })
 
     } catch ({ response }) {
         console.log(response);

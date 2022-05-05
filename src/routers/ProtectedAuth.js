@@ -13,7 +13,7 @@ function ProtectedAuth({ children }) {
     const token = localStorage.getItem('token');
     useEffect(() => {
         token && dispatch(autoSignin())
-    }, [token]);
+    }, [token, dispatch]);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -21,6 +21,7 @@ function ProtectedAuth({ children }) {
         }
     }, [isAuthenticated]);
 
+    if (isAuthenticated) return null;
 
     return children
 }

@@ -5,7 +5,7 @@ const initState = {
     isCreated: false,
     isDeleted: false,
     count: 0,
-    todo: []
+    todo: [],
 }
 
 const reducer = (state = initState, action) => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,6 +17,16 @@ import {
     logout
 } from '../../redux/auth/actions';
 
+const dayOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+]
+
 function TodoList() {
     const dispatch = useDispatch();
     const {
@@ -30,7 +41,10 @@ function TodoList() {
     const [showModalDelete, setShowModalDelete] = useState(false);
 
     const handleConfirmDelete = () => {
-        dispatch(deleteTodo(idDelete))
+        dispatch(deleteTodo({
+            idDelete,
+            page,
+        }))
     }
 
     const handleOpenModalDelete = (id) => {
@@ -39,7 +53,10 @@ function TodoList() {
     }
 
     const handleChangeCheckbox = (todo) => {
-        dispatch(updateTodo(todo))
+        dispatch(updateTodo({
+            page,
+            todo
+        }))
     }
 
     const handleLogout = () => {
@@ -74,7 +91,6 @@ function TodoList() {
         }
     }, [count]);
 
-    console.log(page);
 
     return (
         <>
@@ -92,7 +108,10 @@ function TodoList() {
                         <div className={clsx(
                             styles.date_amount_task
                         )}>
-                            <h4>Wednesday, 22 Nov</h4>
+                            <h4>
+                                {dayOfWeek[dayjs().day()]},
+                                {dayjs().format(' DD MMM')}
+                            </h4>
                             <span>{count} tasks</span>
                         </div>
                         <div className={clsx(

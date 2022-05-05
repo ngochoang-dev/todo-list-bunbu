@@ -4,7 +4,10 @@ import { IoMdTrash } from 'react-icons/io';
 
 import styles from './Todo.module.css';
 
-function Todo({ handleOpenModalDelete, todo, handleChangeCheckbox }) {
+function Todo({
+    handleOpenModalDelete,
+    todo,
+    handleChangeCheckbox }) {
     const { title, is_finished, _id } = todo;
     const [value, setValue] = useState(title);
     const [show, setShow] = useState(false);
@@ -14,6 +17,7 @@ function Todo({ handleOpenModalDelete, todo, handleChangeCheckbox }) {
     }
 
     const handleBlur = () => {
+        if (value.trim() === title) return
         setShow(false);
         handleChangeCheckbox({
             ...todo,
@@ -59,6 +63,9 @@ function Todo({ handleOpenModalDelete, todo, handleChangeCheckbox }) {
                                 ref={currRef => currRef ? currRef.focus() : ''}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
+                                onKeyDown={(e) => {
+                                    e.key === 'Enter' && handleBlur()
+                                }}
                             />
                     }
                 </div>
