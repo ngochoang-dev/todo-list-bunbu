@@ -53,9 +53,17 @@ const reducer = (state = initState, action) => {
         }
 
         case types.UPDATE_TODO_SUCCESS: {
+            const newTodo = state.todo.map(item => {
+                if (item._id === action.payload._id) {
+                    item = { ...item, ...action.payload }
+                }
+                return item;
+            })
+
             return {
                 ...state,
                 loading: false,
+                todo: newTodo
             }
         }
 

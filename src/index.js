@@ -16,16 +16,10 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/" element={
-                    <ProtectedAuth>
-                        <Signin />
-                    </ProtectedAuth>
-                } />
-                <Route path="signup" element={
-                    <ProtectedAuth>
-                        <Signup />
-                    </ProtectedAuth>
-                } />
+                <Route path="/" element={<ProtectedAuth />}>
+                    <Route index element={<Signin />} />
+                    <Route path='signup' element={<Signup />} />
+                </Route>
                 <Route path="dashboard" element={
                     <ProtectedRoute>
                         <TodoList />

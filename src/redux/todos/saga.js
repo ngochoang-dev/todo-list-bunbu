@@ -53,12 +53,8 @@ function* deleteTodo({ payload }) {
 function* updateTodo({ payload }) {
     try {
         yield put({ type: types.UPDATE_TODO_LOADING });
-        const res = yield call(handleUpdateTodo, payload);
-        yield put({ type: types.UPDATE_TODO_SUCCESS })
-        yield put({
-            type: types.GET_TODO, payload: payload.page
-        })
-
+        const res = yield call(handleUpdateTodo, payload.todo);
+        yield put({ type: types.UPDATE_TODO_SUCCESS, payload: payload.todo })
     } catch ({ response }) {
         console.log(response);
         yield put({

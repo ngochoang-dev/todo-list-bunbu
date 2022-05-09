@@ -41,9 +41,17 @@ function TodoList() {
     const [showModalDelete, setShowModalDelete] = useState(false);
 
     const handleConfirmDelete = () => {
+        let p = page;
+        if (todo.length < 2) {
+            page === 1 ? p = page : p = page - 1;
+            setPage(prev => {
+                if (prev === 1) return prev;
+                return prev - 1
+            })
+        }
         dispatch(deleteTodo({
             idDelete,
-            page,
+            page: p,
         }))
     }
 
@@ -90,7 +98,6 @@ function TodoList() {
             setPagination(pages)
         }
     }, [count]);
-
 
     return (
         <>

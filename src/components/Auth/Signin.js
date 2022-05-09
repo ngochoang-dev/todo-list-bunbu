@@ -68,7 +68,7 @@ function Signin() {
             <div className={clsx(
                 styles.control
             )}>
-                <Link to='/signup'>
+                <Link to='signup'>
                     Sign up
                 </Link>
             </div>

@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { autoSignin } from '../redux/auth/actions';
 
 
-function ProtectedAuth({ children }) {
+function ProtectedAuth() {
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const { isAuthenticated } = useSelector(state => state.auth);
@@ -23,7 +23,7 @@ function ProtectedAuth({ children }) {
 
     if (isAuthenticated) return null;
 
-    return children
+    return <Outlet />
 }
 
 export default ProtectedAuth;

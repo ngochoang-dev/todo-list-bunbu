@@ -28,11 +28,17 @@ const axiosInstance = () => {
         }
         if (statusCode && statusCode === 401) {
             console.log('resfresh');
-            const token = await refreshToken()
-            if (token) {
-                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-                localStorage.setItem('token', token)
-                return instance(config)
+            try {
+                const token = await refreshToken()
+                if (token) {
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+                    localStorage.setItem('token', token)
+                    return instance(config)
+                }
+            } catch (error) {
+                localStorage.removeItem('token')
+                localStorage.removeItem('refreshToken')
+                window.location.href = '/'
             }
         }
         return Promise.reject(error);
